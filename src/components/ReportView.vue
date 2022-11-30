@@ -18,7 +18,7 @@ export default {
     clickButton : function(){
         axios(
                 {
-                    url: 'http://localhost:8083/excel',
+                    url: 'https://srtserver-production.up.railway.app/excel',
                     method: 'GET',
                     responseType: 'blob',
                 })
