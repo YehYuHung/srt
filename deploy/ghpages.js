@@ -1,5 +1,6 @@
 // place at : deploy/ghpages.js
 // you can see more info at https://github.com/tschaub/gh-pages
+// reference Url : https://github.com/andrew781026/F2E_Card
 const path = require('path');
 const ghpages = require('gh-pages');
 

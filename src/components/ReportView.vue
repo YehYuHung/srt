@@ -1,18 +1,20 @@
 <template>
-    <div>
+    <div class="template-container">
         <p>{{ msg }}</p>  <!-- 6. Rerender View -->
-        <form>
-            <h3>ªí³æ´ú¸Õ</h3>
-            <div class="div_text">
-                <label for="username">±b¸¹</label>
-                <input type="text" v-model="username"/>
-            </div>
-            <div class="div_text">
-                <label for="username">±K½X</label>
-                <input type="text" v-model="password"/>
-            </div>
-            <button v-on:click="handleOut">°e¥X</button>
-        </form>
+        <div class="form-container">
+            <form>
+                <h3>è¡¨å–®æ¸¬è©¦</h3>
+                <div class="div_text ">
+                    <label for="username">å¸³è™Ÿ</label>
+                    <input type="text" v-model="username" />
+                </div>
+                <div class="div_text">
+                    <label for="username">å¯†ç¢¼</label>
+                    <input type="text" v-model="password" />
+                </div>
+                <button v-on:click="handleOut">é€å‡º</button>
+            </form>
+        </div>
         <button v-on:click="clickButton">Outside Button</button>   <!-- 1. Click Button -->
     </div>
 </template>
@@ -27,13 +29,13 @@
         },
         data() {
             return {
-                username : '',
-                password : '',
+                username: '',
+                password: '',
             }
         },
         methods: {
             handleOut() {
-                alert(`¿é¤J±b¸¹ : ${this.username}\n¿é¤J±K½X : ${this.password}`);
+                alert(`è¼¸å…¥å¸³è™Ÿ : ${this.username}\nè¼¸å…¥å¯†ç¢¼ : ${this.password}`);
             },
             clickButton() {
                 axios(
@@ -86,6 +88,13 @@
 
     a {
         color: #42b983;
+    }
+
+    .form-container {
+        border: 5px solid black;
+        border-radius: 1rem;
+        margin: 2% 10%;
+        padding: 0px;
     }
 </style>
 

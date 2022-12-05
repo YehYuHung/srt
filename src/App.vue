@@ -1,21 +1,24 @@
 <template>
     <div id="app">
         <!--<img alt="Vue logo" src="./assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js App"/> 
-        <h1>{{message}}</h1> -->
-        <ReportView msg="Yoloshiku" />
+        <HelloWorld/> 
+        <h1>{{message}}</h1> 
+        <ReportView msg="Yoloshiku" /> -->
+        <ComplexPart/>
     </div>
 </template>
 
 <script>
     //import HelloWorld from './components/HelloWorld.vue';
-    import ReportView from './components/ReportView.vue';
+    //import ReportView from './components/ReportView.vue';
+    import ComplexPart from './components/complexPart.vue';
 
     export default {
         name: 'App',
         components: {
             //HelloWorld,
-            ReportView
+            //ReportView,
+            ComplexPart
         },
         data() {
             return {
