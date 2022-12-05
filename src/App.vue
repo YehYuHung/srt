@@ -3,22 +3,25 @@
         <!--<img alt="Vue logo" src="./assets/logo.png">
         <HelloWorld/> 
         <h1>{{message}}</h1> 
-        <ReportView msg="Yoloshiku" /> -->
-        <ComplexPart/>
+        <ReportView msg="Yoloshiku" />
+        <ComplexPart/> -->
+        <AsGridView />
     </div>
 </template>
 
 <script>
     //import HelloWorld from './components/HelloWorld.vue';
     //import ReportView from './components/ReportView.vue';
-    import ComplexPart from './components/complexPart.vue';
+    //import ComplexPart from './components/complexPart.vue';
+    import AsGridView from './components/AsGridView.vue';
 
     export default {
         name: 'App',
         components: {
             //HelloWorld,
             //ReportView,
-            ComplexPart
+            //ComplexPart,
+            AsGridView
         },
         data() {
             return {
