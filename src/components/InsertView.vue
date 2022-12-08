@@ -16,7 +16,6 @@
                         <td>{{quantityTitle}}</td>
                         <td>{{totalCostTitle}}</td>
                         <td>{{salesTitle}}</td>
-                        <td style="border:none"></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +48,9 @@
                         <td>
                             <button class="btn btn-danger" v-on:click="DeleteRow(item,index)" type="button">刪除</button>
                         </td>
+                    </tr>
+                    <tr v-if="items.length === 0">
+                        <td colspan="99">請新增列表</td>
                     </tr>
                 </tbody>
             </table>
