@@ -1,11 +1,12 @@
 <template>
-    <div id="app">
+    <div id="app" class="container">
         <!--<img alt="Vue logo" src="./assets/logo.png">
         <HelloWorld/> 
         <h1>{{message}}</h1> 
         <ReportView msg="Yoloshiku" />
-        <ComplexPart/> -->
-        <AsGridView />
+        <ComplexPart/>
+        <AsGridView /> -->
+        <InsertView/>
     </div>
 </template>
 
@@ -13,7 +14,8 @@
     //import HelloWorld from './components/HelloWorld.vue';
     //import ReportView from './components/ReportView.vue';
     //import ComplexPart from './components/complexPart.vue';
-    import AsGridView from './components/AsGridView.vue';
+    //import AsGridView from './components/AsGridView.vue';
+    import InsertView from './components/InsertView.vue';
 
     export default {
         name: 'App',
@@ -21,7 +23,8 @@
             //HelloWorld,
             //ReportView,
             //ComplexPart,
-            AsGridView
+            //AsGridView,
+            InsertView,
         },
         data() {
             return {

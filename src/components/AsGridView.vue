@@ -20,7 +20,6 @@
                          :paginationAutoPageSize="true"
                          :rowSelection="rowSelection"
                          :rowData="rowData"
-                         :autoHeight="autoHeight"
                          :defaultColDef="defaultColDef"
                          :grid-ready="onGridReady">
             </ag-grid-vue>
@@ -53,7 +52,6 @@
                     sortable: true,
                 },
                 rowSelection: null,
-                domLayout: 'autoHeight',
             };
         },
         methods: {
