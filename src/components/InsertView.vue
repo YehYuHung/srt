@@ -34,16 +34,21 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="cost" @input="numberOnly" maxlength="20" placeholder="請輸入金額" v-model.number.trim="item.cost" />
+                            <!-- 
+                                 監聽並修改畫面資料，但由於 v-model 為雙向綁定，輸入非數字時畫面呈現無
+                                 但實際上已經被綁訂在 v-model 身上，因此採用 v-model.lazy 等待輸入完
+                                 再將其資料綁定回 v-model身上
+                            -->
+                            <input type="text" class="form-control" name="cost" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.cost" v-number-input/>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="quantity" @input="numberOnly" maxlength="20" placeholder="請輸入金額" v-model.number.trim="item.quantity" />
+                            <input type="text" class="form-control" name="quantity" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.quantity" v-number-input/>
                         </td>
                         <td style="vertical-align:middle;">
                             <label name="totalCost">{{ComputeTotalCount(item)}}</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="sales" @input="numberOnly" maxlength="20" placeholder="請輸入金額" v-model.number.trim="item.sales" />
+                            <input type="text" class="form-control" name="sales" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.sales" v-number-input/>
                         </td>
                         <td>
                             <button class="btn btn-danger" v-on:click="DeleteRow(item,index)" type="button">刪除</button>
@@ -118,9 +123,9 @@
                 //從集合中刪除物件
                 this.items.splice(index, 1);//刪除資料，畫面會跟著變動
             },
-            numberOnly: function (e) {
-                e.target.value = e.target.value.replace(/[^\d]/g, '');
-            },
+            //NumberOnly: function (val, e) {
+            //    val = e.target.value;
+            //},
             ComputeTotalCount: function (item) {
                 if (typeof (item.cost) != "number" || typeof (item.quantity) != "number")
                     return item.totalCost = 0;

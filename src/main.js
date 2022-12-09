@@ -32,6 +32,29 @@ Vue.component('todo-list', {
     }
 });
 
+Vue.directive('number-input', {
+    bind: function (el) {
+        if (el.tagName !== 'INPUT')
+            return;
+        el.addEventListener(el.tagName.toLowerCase(), numberOnly(el))
+    },
+    unbind: function (el) {
+        if (el.tagName !== 'INPUT')
+            return;
+        el.removeEventListener(el.tagName.toLowerCase(), numberOnly(el))
+    },
+})
+
+// 監聽input並即時竄改非數字
+function numberOnly(el) {
+    function haddle() {
+        console.log(el.value);
+        el.value = el.value.replace(/\D+/g, '');
+        return el.value;
+    }
+    return haddle;
+}
+
 new Vue({
     render: h => h(App)
 }).$mount('#app')
