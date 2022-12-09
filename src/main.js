@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import router from './router/'
 import Constant from './const/ConstWord.vue'
 
 // bootstrap ¤Þ¤J https://yukihiew.com/npm%E5%BC%95%E5%85%A5bootstrap/
@@ -56,6 +57,7 @@ function numberOnly(el) {
 }
 
 new Vue({
+    router: router,
     render: h => h(App)
 }).$mount('#app')
 

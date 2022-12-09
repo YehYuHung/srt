@@ -123,9 +123,6 @@
                 //從集合中刪除物件
                 this.items.splice(index, 1);//刪除資料，畫面會跟著變動
             },
-            //NumberOnly: function (val, e) {
-            //    val = e.target.value;
-            //},
             ComputeTotalCount: function (item) {
                 if (typeof (item.cost) != "number" || typeof (item.quantity) != "number")
                     return item.totalCost = 0;
