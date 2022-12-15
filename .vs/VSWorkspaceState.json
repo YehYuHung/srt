@@ -1,13 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\deploy",
     "\\public",
     "\\src",
     "\\src\\assets",
     "\\src\\components",
-    "\\src\\const"
+    "\\src\\const",
+    "\\src\\router"
   ],
-  "SelectedNode": "\\src\\components\\InsertView.vue",
   "PreviewInSolutionExplorer": false
 }

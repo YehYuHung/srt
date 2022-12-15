@@ -2,70 +2,76 @@
     <div>
         <h1>My Todo List</h1>
 
-        <div class="float-right">
-            <button class="btn btn-info" id="btnAdd" v-on:click="AddRow">新增</button>
+        <div class="row">
+            <div class="float-right">
+                <button class="btn btn-info" id="btnAdd" v-on:click="AddRow">新增</button>
+            </div>
         </div>
 
-        <form>
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <td>{{merchandiseTitle}}</td>
-                        <td>{{dataSourceTitle}}</td>
-                        <td>{{costTitle}}</td>
-                        <td>{{quantityTitle}}</td>
-                        <td>{{totalCostTitle}}</td>
-                        <td>{{salesTitle}}</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item,index) in items" :key="item.v_id">
-                        <!--後端使用v_id資料識別資料-->
-                        <td>
-                            <select class="form-control" name="merchandise" v-model="item.merchandise">
-                                <optgroup v-for="(group,groupName) in merchandiseGroupDdl" :key="group.index" :label="groupName">
-                                    <option v-for="option in group" :key="option.index" :value="option.val">{{option.item}}</option>
-                                </optgroup>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" name="dataSource" v-model="item.dataSource">
-                                <option v-for="dataSourceItem in dataSourceDdl" :key="dataSourceItem.index" :value="dataSourceItem.val">{{dataSourceItem.item}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <!-- 
-                                 監聽並修改畫面資料，但由於 v-model 為雙向綁定，輸入非數字時畫面呈現無
-                                 但實際上已經被綁訂在 v-model 身上，因此採用 v-model.lazy 等待輸入完
-                                 再將其資料綁定回 v-model身上
-                            -->
-                            <input type="text" class="form-control" name="cost" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.cost" v-number-input/>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="quantity" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.quantity" v-number-input/>
-                        </td>
-                        <td style="vertical-align:middle;">
-                            <label name="totalCost">{{ComputeTotalCount(item)}}</label>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="sales" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.sales" v-number-input/>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger" v-on:click="DeleteRow(item,index)" type="button">刪除</button>
-                        </td>
-                    </tr>
-                    <tr v-if="items.length === 0">
-                        <td colspan="99">請新增列表</td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-
-        <div class="float-right">
-            <!--資料都存放在JS裡了，所以使用Ajax送出資料，不仰賴表單提交，因為表單提交動作和畫面的輸入欄位有很大藕合性，但Vue.js就是要讓開發者不用去管畫面的處理-->
-            <button class="btn btn-primary float-right" id="btnSubmit" type="button" v-on:click="AjaxSubmit">Ajax儲存</button>
+        <div class="row custom-table-width">
+            <form id="reportForm">
+                <table id="InsertTable" class="table table-striped table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{merchandiseTitle}}</th>
+                            <th scope="col">{{dataSourceTitle}}</th>
+                            <th scope="col">{{costTitle}}</th>
+                            <th scope="col">{{quantityTitle}}</th>
+                            <th scope="col">{{totalCostTitle}}</th>
+                            <th scope="col">{{salesTitle}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in items" :key="item.v_id">
+                            <!--後端使用v_id資料識別資料-->
+                            <td scope="row">
+                                <select class="form-control" name="merchandise" v-model="item.merchandise">
+                                    <optgroup v-for="(group,groupName) in merchandiseGroupDdl" :key="group.index" :label="groupName">
+                                        <option v-for="option in group" :key="option.index" :value="option.val">{{option.item}}</option>
+                                    </optgroup>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="dataSource" v-model="item.dataSource">
+                                    <option v-for="dataSourceItem in dataSourceDdl" :key="dataSourceItem.index" :value="dataSourceItem.val">{{dataSourceItem.item}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <!--
+                                     監聽並修改畫面資料，但由於 v-model 為雙向綁定，輸入非數字時畫面呈現無
+                                     但實際上已經被綁訂在 v-model 身上，因此採用 v-model.lazy 等待輸入完
+                                     再將其資料綁定回 v-model身上
+                                -->
+                                <input type="text" class="form-control" name="cost" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.cost" v-number-input />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="quantity" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.quantity" v-number-input />
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <label name="totalCost">{{ComputeTotalCount(item)}}</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="sales" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.sales" v-number-input />
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" v-on:click="DeleteRow(item,index)" type="button">刪除</button>
+                            </td>
+                        </tr>
+                        <tr v-if="items.length === 0">
+                            <td colspan="6">請新增列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
-        <div v-html="showResult"></div>
+
+        <div class="row">
+            <div class="float-right">
+                <!--資料都存放在JS裡了，所以使用Ajax送出資料，不仰賴表單提交，因為表單提交動作和畫面的輸入欄位有很大藕合性，但Vue.js就是要讓開發者不用去管畫面的處理-->
+                <button class="btn btn-primary float-right" id="btnSubmit" type="button" v-on:click="AjaxSubmit">Ajax儲存</button>
+            </div>
+            <div v-html="showResult"></div>
+        </div>
     </div>
 </template>
 
@@ -92,7 +98,6 @@
             { val: "glo0002", item: "小ng" },
         ]
     }
-
 
     export default {
         name: "InsertView",
@@ -136,13 +141,6 @@
 </script>
 
 <style scoped>
-    /*
-    .order-table {
-        width: 80%;
-        border: 1px solid black;
-        margin-left: auto;
-        margin-right: auto;
-    }*/
 
     div.float-right {
         float: right;
@@ -150,5 +148,22 @@
 
     div {
         margin: 5px 0px;
+    }
+
+    @media (max-width: 767px) {
+
+        .custom-table-width {
+            overflow-x: auto;
+        }
+
+        #InsertTable thead tr th{
+            width: 180px;
+        }
+
+        #InsertTable {
+            table-layout: fixed;
+            min-width: 1200px;
+            width: 100%;
+        }
     }
 </style>

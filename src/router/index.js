@@ -13,17 +13,19 @@ Vue.use(VueRouter);
 import Index from '../components/Index.vue'
 
 const routes = [
-    { name: 'index', path: '/', component: Index },
-    { name: 'report', path: '/ReportView/', component: () => import('../components/ReportView.vue') },
-    { name: 'complexPart', path: '/complexPart/', component: () => import('../components/complexPart.vue') },
-    { name: 'gridView', path: '/AsGridView/', component: () => import('../components/AsGridView.vue') },
-    { name: 'insertView', path: '/InsertView/', component: () => import('../components/InsertView.vue') },
+    { name: 'default', path: '/', redirect: {name : 'index'} }, // 訪問Url 固定從/srt/開始
+    { name: 'index', path: '/srt/', component: Index },
+    { name: 'report', path: '/srt/Report/', component: () => import('../components/ReportView.vue') },
+    { name: 'complexPart', path: '/srt/complexPart/', component: () => import('../components/complexPart.vue') },
+    { name: 'grid', path: '/srt/AsGrid/', component: () => import('../components/AsGridView.vue') },
+    { name: 'insert', path: '/srt/Insert/', component: () => import('../components/InsertView.vue') },
 ]
 
 const router = new VueRouter({
     // Vue2 HashTag 清除方式
     // https://stackoverflow.com/questions/34623833/vue-js-how-to-remove-hashbang-from-url
     mode: 'history',
+    path: '/srt/',
     routes,
 })
 
