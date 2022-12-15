@@ -13,12 +13,7 @@
                 <table id="InsertTable" class="table table-striped table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">{{merchandiseTitle}}</th>
-                            <th scope="col">{{dataSourceTitle}}</th>
-                            <th scope="col">{{costTitle}}</th>
-                            <th scope="col">{{quantityTitle}}</th>
-                            <th scope="col">{{totalCostTitle}}</th>
-                            <th scope="col">{{salesTitle}}</th>
+                            <th scope="col" v-for="(title) in titles" :key="title.index" class="text-nowrap">{{title.val}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,10 +33,10 @@
                             </td>
                             <td>
                                 <!--
-                                     監聽並修改畫面資料，但由於 v-model 為雙向綁定，輸入非數字時畫面呈現無
-                                     但實際上已經被綁訂在 v-model 身上，因此採用 v-model.lazy 等待輸入完
-                                     再將其資料綁定回 v-model身上
-                                -->
+             監聽並修改畫面資料，但由於 v-model 為雙向綁定，輸入非數字時畫面呈現無
+             但實際上已經被綁訂在 v-model 身上，因此採用 v-model.lazy 等待輸入完
+             再將其資料綁定回 v-model身上
+        -->
                                 <input type="text" class="form-control" name="cost" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.cost" v-number-input />
                             </td>
                             <td>
@@ -53,12 +48,15 @@
                             <td>
                                 <input type="text" class="form-control" name="sales" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.sales" v-number-input />
                             </td>
+                            <td style="vertical-align:middle;">
+                                <label name="profit">{{ComputeProfit(item)}}</label>
+                            </td>
                             <td>
                                 <button class="btn btn-danger" v-on:click="DeleteRow(item,index)" type="button">刪除</button>
                             </td>
                         </tr>
                         <tr v-if="items.length === 0">
-                            <td colspan="6">請新增列表</td>
+                            <td v-bind:colspan="titles.length">請新增列表</td>
                         </tr>
                     </tbody>
                 </table>
@@ -103,12 +101,15 @@
         name: "InsertView",
         data() {
             return {
-                merchandiseTitle: this.$Constant.merchandise,
-                dataSourceTitle: this.$Constant.dataSource,
-                costTitle: this.$Constant.cost,
-                quantityTitle: this.$Constant.quantity,
-                totalCostTitle: this.$Constant.totalCost,
-                salesTitle: this.$Constant.sales,
+                titles: [
+                    { text: "merchandiseTitle", val: this.$Constant.merchandise },
+                    { text: "dataSourceTitle", val: this.$Constant.dataSource },
+                    { text: "costTitle", val: this.$Constant.cost },
+                    { text: "quantityTitle", val: this.$Constant.quantity },
+                    { text: "totalCostTitle", val: this.$Constant.totalCost },
+                    { text: "salesTitle", val: this.$Constant.sales },
+                    { text: "profitTitle", val: this.$Constant.profit }
+                ],
                 items: items,
                 originalItems: items,
                 dataSourceDdl: dataSourceDdl,
@@ -122,16 +123,23 @@
         methods: {
             AddRow: function () {
                 let v_id = Date.now();//產生一個畫面用的不重複id
-                this.items.push({ v_id: v_id, merchandise: "", dataSource: "shopee", cost: 0, quantity: 0, totalCost: 0, sales: "" });//新增資料到陣列就好，不必組html字串
+                this.items.push({ v_id: v_id, merchandise: "", dataSource: "shopee", cost: 0, quantity: 0, totalCost: 0, sales: 0, profit: 0 });//新增資料到陣列就好，不必組html字串
             },
             DeleteRow: function (item, index) {
                 //從集合中刪除物件
                 this.items.splice(index, 1);//刪除資料，畫面會跟著變動
             },
+            // 成本
             ComputeTotalCount: function (item) {
                 if (typeof (item.cost) != "number" || typeof (item.quantity) != "number")
                     return item.totalCost = 0;
                 return item.totalCost = item.cost * item.quantity;
+            },
+            // 利潤
+            ComputeProfit: function (item) {
+                if (typeof (item.cost) != "number" || typeof (item.quantity) != "number" || typeof (item.sales) != "number")
+                    return item.profit = 0;
+                return item.profit = (item.cost * item.quantity) - item.sales;
             },
             AjaxSubmit: function () {
                 this.showResult = JSON.stringify(this.items);//序列化JSON字串
@@ -150,6 +158,20 @@
         margin: 5px 0px;
     }
 
+    .custom-table-width {
+        overflow-x: auto;
+        border: 1px solid black;
+    }
+
+    #InsertTable thead tr th {
+        width: 190px;
+    }
+
+    #InsertTable {
+        min-width: 1440px;
+        width: 100%;
+    }
+/*
     @media (max-width: 767px) {
 
         .custom-table-width {
@@ -157,13 +179,12 @@
         }
 
         #InsertTable thead tr th{
-            width: 180px;
+            width: 190px;
         }
 
         #InsertTable {
-            table-layout: fixed;
-            min-width: 1200px;
+            min-width: 1440px;
             width: 100%;
         }
-    }
+    }*/
 </style>
