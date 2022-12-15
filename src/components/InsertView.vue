@@ -139,7 +139,7 @@
             ComputeProfit: function (item) {
                 if (typeof (item.cost) != "number" || typeof (item.quantity) != "number" || typeof (item.sales) != "number")
                     return item.profit = 0;
-                return item.profit = (item.cost * item.quantity) - item.sales;
+                return item.profit = item.sales - (item.cost * item.quantity);
             },
             AjaxSubmit: function () {
                 this.showResult = JSON.stringify(this.items);//序列化JSON字串
