@@ -4,6 +4,10 @@
             let redirect = sessionStorage.redirect;
             delete sessionStorage.redirect;
             if (redirect && redirect !== location.href) {
-                history.replaceState(null, null, redirect);
+                if (redirect.search('srt') < 0) {
+                    history.replaceState(null, null, `${redirect.substr(0, redirect.indexOf('//', redirect.indexOf('//') + 3) + 1)}srt`);
+                } else {
+                    history.replaceState(null, null, redirect);
+                }
             }
         })();</script><noscript><strong>We're sorry but srt doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div></body></html>
