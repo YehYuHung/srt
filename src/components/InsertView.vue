@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item,index) in items" :key="item.v_id">
+                        <tr v-for="(item,index) in items" :key="item.storeId">
                             <!--後端使用v_id資料識別資料-->
                             <td scope="row">
                                 <select class="form-control" name="merchandise" v-model="item.merchandise">
@@ -123,7 +123,7 @@
         methods: {
             AddRow: function () {
                 let v_id = Date.now();//產生一個畫面用的不重複id
-                this.items.push({ v_id: v_id, merchandise: "", dataSource: "shopee", cost: 0, quantity: 0, totalCost: 0, sales: 0, profit: 0 });//新增資料到陣列就好，不必組html字串
+                this.items.push({ storeId: v_id, merchandise: "", dataSource: "shopee", cost: 0, quantity: 0, totalCost: 0, sales: 0, profit: 0 });//新增資料到陣列就好，不必組html字串
             },
             DeleteRow: function (item, index) {
                 //從集合中刪除物件

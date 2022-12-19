@@ -5,7 +5,9 @@
     const quantity = "數量";
     const totalCost = "總成本";
     const sales = "銷售額";
-    const profit = "淨利潤"
+    const profit = "淨利潤";
+
+    const storeId = "交易流水號";
 
     export default{
         merchandise,
@@ -15,5 +17,6 @@
         totalCost,
         sales,
         profit,
+        storeId,
     };
 </script>

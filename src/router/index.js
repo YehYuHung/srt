@@ -17,14 +17,17 @@ const routes = [
     { name: 'index', path: '/srt/', component: Index },
     { name: 'report', path: '/srt/Report/', component: () => import('../components/ReportView.vue') },
     { name: 'complexPart', path: '/srt/complexPart/', component: () => import('../components/complexPart.vue') },
-    { name: 'grid', path: '/srt/AsGrid/', component: () => import('../components/AsGridView.vue') },
+    {
+        name: 'grid', path: '/srt/AsGrid/', component: () => import('../components/AsGridView.vue'),
+        //children: [{ path: '', name: 'user', component: UserHome }]
+    },
     // keepAlive 快取存活
     { name: 'insert', path: '/srt/Insert/', component: () => import('../components/InsertView.vue'), meta: { keepAlive: true } },
     // SPA 與 MPA 差別 以及history/hash原理
     // https://ithelp.ithome.com.tw/articles/10277447?sc=pt
     // 處理history refresh失敗方法
     // https://ithelp.ithome.com.tw/articles/10214449
-    { name: 'notFound', path: '*?', redirect: { name: 'index' } },
+    // 最新處理 請查看 index.html
 ]
 
 const router = new VueRouter({
