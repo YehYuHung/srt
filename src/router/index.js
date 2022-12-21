@@ -22,12 +22,15 @@ const routes = [
         //children: [{ path: '', name: 'user', component: UserHome }]
     },
     // keepAlive 快取存活
-    { name: 'insert', path: '/srt/Insert/', component: () => import('../components/InsertView.vue'), meta: { keepAlive: true } },
+    { name: 'insert', path: '/srt/Insert/', component: () => import('../components/InsertView.vue') },
     // SPA 與 MPA 差別 以及history/hash原理
     // https://ithelp.ithome.com.tw/articles/10277447?sc=pt
     // 處理history refresh失敗方法
     // https://ithelp.ithome.com.tw/articles/10214449
     // 最新處理 請查看 index.html
+    {
+        name: 'passing', path: '/srt/Pass/:storeId(\\d+)?', component: () => import('../components/InsertView.vue')
+    },
 ]
 
 const router = new VueRouter({

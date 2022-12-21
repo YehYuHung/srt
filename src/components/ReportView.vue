@@ -1,6 +1,6 @@
 <template>
     <div class="template-container">
-        <p>{{ msg }}</p>  <!-- 6. Rerender View -->
+        <h1>{{ msg }}</h1>  <!-- 6. Rerender View -->
         <div class="form-container">
             <form>
                 <h3>表單測試</h3>

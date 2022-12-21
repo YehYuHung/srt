@@ -9,7 +9,8 @@
                 <li><router-link :to="{name:'report'}">報表</router-link></li>
                 <li><router-link :to="{name:'complexPart'}">測試</router-link></li>
                 <li><router-link :to="{name:'grid'}">檢視</router-link></li>
-                <li><router-link :to="{name:'insert'}">表格</router-link></li>
+                <!--<li><router-link :to="{name:'insert'}">表格</router-link></li>
+                <li><router-link :to="{name:'passing'}">傳遞</router-link></li>-->
             </ul>
         </div>
         <div class="container">

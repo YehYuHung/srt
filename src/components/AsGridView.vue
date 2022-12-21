@@ -1,11 +1,15 @@
 <template>
     <div>
         <div>
-            <h3>{{title}}</h3>
-            <button v-on:click="check">新增本月</button>
+            <h1>{{title}}</h1>
         </div>
         <div>
-            <button @click="getSelectedRows()">Get Selected Rows</button>
+            <div class="row">
+                <div class="float-right">
+                    <button class="btn btn-info" id="addBtn" v-on:click="addData">新增資料</button>
+                    <button class="btn btn-info" id="editBtn" v-on:click="editSelectedDatas">修改</button>
+                </div>
+            </div>
             <!--
                 * pagination 分頁
                 * paginationAutoPageSize 固定頁面長度改用分頁
@@ -30,6 +34,7 @@
 </template>
 
 <script>
+    import virtualData from "../virtualData.json";
     import "ag-grid-community/styles/ag-grid.css";
     import "ag-grid-community/styles/ag-theme-alpine.css";
     import { AgGridVue } from "ag-grid-vue";
@@ -62,9 +67,6 @@
             };
         },
         methods: {
-            check() {
-                alert("yoloshiku");
-            },
             onGridReady(params) {
                 this.gridApi = params.api;
                 this.gridColumnApi = params.columnApi;
@@ -82,14 +84,21 @@
                 this.width = width;
                 this.height = height;
             },
-            getSelectedRows() {
+            editSelectedDatas() {
                 // 獲得grid各節點資訊
-                const selectedNodes = this.gridApi.getSelectedNodes();
-                if (selectedNodes) {
-                    const selectedData = selectedNodes.map(node => node.data);
-                    alert(JSON.stringify(selectedData));
+                if (this.gridApi) {
+                    const selectedData = this.gridApi.getSelectedNodes().map(node => node.data);
+                    if (selectedData.length > 0) {
+                        //alert(JSON.stringify(selectedData.map(e => e.storeId)));
+                        this.$router.push({ name: 'passing', query: { Item: selectedData.map(e => e.storeId) } });
+                    } else {
+                        alert("請選擇其中一件商品");
+                    }
                 }
             },
+            addData() {
+                this.$router.push({ name: 'insert' });
+            }
         },
         components: {
             AgGridVue,
@@ -123,21 +132,7 @@
                     }
                 },
             ];
-
-            this.rowData = [
-                { storeId: Date.now(), merchandise: "4.6x300mm", dataSource: "facebook", cost: 100, quantity: 7, totalCost: 700, sales: 1050, profit: 350 },
-                { storeId: Date.now(), merchandise: "4.6x400mm", dataSource: "蝦皮", cost: 105, quantity: 1, totalCost: 105, sales: 130, profit: 25 },
-                { storeId: Date.now(), merchandise: "4.6x500mm", dataSource: "蝦皮", cost: 119, quantity: 3, totalCost: 357, sales: 450, profit: 93 },
-                { storeId: Date.now(), merchandise: "4.6x200mm", dataSource: "facebook", cost: 139, quantity: 2, totalCost: 278, sales: 300, profit: 22 },
-                { storeId: Date.now(), merchandise: "4.6x600mm", dataSource: "蝦皮", cost: 50, quantity: 10, totalCost: 500, sales: 400, profit: -100 },
-                { storeId: Date.now(), merchandise: "束帶工具", dataSource: "蝦皮", cost: 100, quantity: 7, totalCost: 700, sales: 1050, profit: 350 },
-                { storeId: Date.now(), merchandise: "束帶工具", dataSource: "facebook", cost: 50, quantity: 10, totalCost: 500, sales: 1200, profit: 700 },
-                { storeId: Date.now(), merchandise: "4.6x600mm", dataSource: "facebook", cost: 119, quantity: 3, totalCost: 357, sales: 450, profit: 93 },
-                { storeId: Date.now(), merchandise: "火龍果小ng一組", dataSource: "facebook", cost: 50, quantity: 10, totalCost: 500, sales: 1200, profit: 700 },
-                { storeId: Date.now(), merchandise: "4.6x300mm", dataSource: "蝦皮", cost: 100, quantity: 8, totalCost: 800, sales: 500, profit: -300 },
-                { storeId: Date.now(), merchandise: "火龍果小ng一組", dataSource: "蝦皮", cost: 50, quantity: 11, totalCost: 550, sales: 1200, profit: 650 },
-                { storeId: Date.now(), merchandise: "4.6x400mm", dataSource: "facebook", cost: 50, quantity: 10, totalCost: 500, sales: 1200, profit: 700 },
-            ];
+            this.rowData = virtualData.merchandiseItem;
         },
         // 綁定 gridApi 以及 gridColumnApi 資訊
         mounted() {
@@ -150,6 +145,15 @@
 <style scoped>
     h3 {
         color: red,
+    }
+
+    div.float-right {
+        float: right;
+    }
+
+    div.float-right > button {
+        margin-right: 1vw;
+        margin-bottom: 1vh;
     }
 </style>
 

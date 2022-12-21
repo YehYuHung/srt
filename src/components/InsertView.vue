@@ -3,6 +3,9 @@
         <h1>My Todo List</h1>
 
         <div class="row">
+            <div class="float-left">
+                <button class="btn btn-info" id="backBtn" v-on:click="backPage">上一頁</button>
+            </div>
             <div class="float-right">
                 <button class="btn btn-info" id="btnAdd" v-on:click="AddRow">新增</button>
             </div>
@@ -33,10 +36,10 @@
                             </td>
                             <td>
                                 <!--
-             監聽並修改畫面資料，但由於 v-model 為雙向綁定，輸入非數字時畫面呈現無
-             但實際上已經被綁訂在 v-model 身上，因此採用 v-model.lazy 等待輸入完
-             再將其資料綁定回 v-model身上
-        -->
+                                     監聽並修改畫面資料，但由於 v-model 為雙向綁定，輸入非數字時畫面呈現無
+                                     但實際上已經被綁訂在 v-model 身上，因此採用 v-model.lazy 等待輸入完
+                                     再將其資料綁定回 v-model身上
+                                -->
                                 <input type="text" class="form-control" name="cost" maxlength="20" placeholder="請輸入金額" v-model.lazy.number.trim="item.cost" v-number-input />
                             </td>
                             <td>
@@ -74,7 +77,28 @@
 </template>
 
 <script>
-    let items = [];
+    import virtualData from "../virtualData.json";
+    function filterData(query) {
+        var filterData = null;
+        if (!query) {
+            return [];
+        } else if (typeof (query) === 'string') {
+            filterData = JSON.parse(JSON.stringify(virtualData.merchandiseItem.filter(x => query == x.storeId)));
+        } else {
+            filterData = JSON.parse(JSON.stringify(virtualData.merchandiseItem.filter(x => query.includes(x.storeId))));
+        }
+
+        // ======== 測試用轉換資料 ==========
+        //var group = Object.values(merchandiseGroupDdl);
+        //group = group[0].concat(group[1]);
+        var group = Array.prototype.concat.apply([], Object.values(merchandiseGroupDdl));
+        filterData.forEach(x => {
+            x.dataSource = dataSourceDdl.find(y => y.item == x.dataSource)?.val;
+            x.merchandise = group.find(y => y.item == x.merchandise)?.val;
+        });
+
+        return filterData;
+    }
 
     let dataSourceDdl = [
         { val: "shopee", item: '蝦皮' },
@@ -110,8 +134,8 @@
                     { text: "salesTitle", val: this.$Constant.sales },
                     { text: "profitTitle", val: this.$Constant.profit }
                 ],
-                items: items,
-                originalItems: items,
+                items: filterData(this.$route.query.Item),
+                originalItems: null,
                 dataSourceDdl: dataSourceDdl,
                 merchandiseGroupDdl: merchandiseGroupDdl,
                 showResult: "", // 顯示資料
@@ -143,8 +167,14 @@
             },
             AjaxSubmit: function () {
                 this.showResult = JSON.stringify(this.items);//序列化JSON字串
-            }
-        }
+            },
+            backPage() {
+                this.$router.go(-1);
+            },
+        },
+        //beforeMount() {
+        //    this.items = filterData(this.$route.query.Item);
+        //}
     }
 </script>
 
@@ -152,6 +182,10 @@
 
     div.float-right {
         float: right;
+    }
+
+    div.float-left {
+        float: left;
     }
 
     div {
@@ -171,7 +205,7 @@
         min-width: 1440px;
         width: 100%;
     }
-/*
+    /*
     @media (max-width: 767px) {
 
         .custom-table-width {
