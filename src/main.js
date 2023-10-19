@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/'
-import Constant from './const/ConstWord.vue'
 
-// bootstrap ¤Ş¤J https://yukihiew.com/npm%E5%BC%95%E5%85%A5bootstrap/
+import Constant from './const/WordConstant.vue'
+
+// bootstrap å¼•å…¥ https://yukihiew.com/npm%E5%BC%95%E5%85%A5bootstrap/
 //import "bootstrap/dist/css/bootstrap.min.css"
 
-// ªı¤î±Ò°Ê®É²£¥Íªº°T®§
+// é˜»æ­¢å•Ÿå‹•æ™‚ç”¢ç”Ÿçš„è¨Šæ¯
 Vue.config.productionTip = false
 
-// ¥ş°ìÅÜ¼Æ¨Ï¥Î Vue 2.0
+// å…¨åŸŸè®Šæ•¸ä½¿ç”¨ Vue 2.0
 // https://ithelp.ithome.com.tw/articles/10278887
 Vue.prototype.$Constant = Constant
 
@@ -46,7 +47,7 @@ Vue.directive('number-input', {
     },
 })
 
-// ºÊÅ¥input¨Ã§Y®ÉÂ«§ï«D¼Æ¦r
+// ç›£è½inputä¸¦å³æ™‚ç«„æ”¹éæ•¸å­—
 function numberOnly(el) {
     function haddle() {
         console.log(el.value);
