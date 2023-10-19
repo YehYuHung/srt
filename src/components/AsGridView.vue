@@ -47,7 +47,8 @@
 import merchandise from "@/mock/data/merchandise.json";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import { AgGridVue } from "ag-grid-vue";
+// import { AgGridVue } from "ag-grid-vue" for Vue2
+import { AgGridVue } from "ag-grid-vue3";
 
 var wordStyle = { color: "red", font: "18px" };
 
@@ -122,25 +123,25 @@ export default {
     // remember declare element for grabbing table datas
     this.gridOptions = {};
     this.columnDefs = [
-      { field: "storeId", headerName: this.$Constant.storeId, hide: true },
+      { field: "storeId", headerName: this.Constant.storeId, hide: true },
       {
         // real columns name from back-end data
         field: "merchandise",
         // show User-defined tags for Viewing
-        headerName: this.$Constant.merchandise,
+        headerName: this.Constant.merchandise,
         // select single row data
         checkboxSelection: true,
         // select all row datas with pagination data
         headerCheckboxSelection: true,
       },
-      { field: "dataSource", headerName: this.$Constant.dataSource },
-      { field: "cost", headerName: this.$Constant.Cost },
-      { field: "quantity", headerName: this.$Constant.quantity },
-      { field: "totalCost", headerName: this.$Constant.totalCost },
-      { field: "sales", headerName: this.$Constant.sales },
+      { field: "dataSource", headerName: this.Constant.dataSource },
+      { field: "cost", headerName: this.Constant.Cost },
+      { field: "quantity", headerName: this.Constant.quantity },
+      { field: "totalCost", headerName: this.Constant.totalCost },
+      { field: "sales", headerName: this.Constant.sales },
       {
         field: "profit",
-        headerName: this.$Constant.profit,
+        headerName: this.Constant.profit,
         cellStyle: function (params) {
           if (params.value < 0) {
             return wordStyle;

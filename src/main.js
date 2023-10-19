@@ -1,20 +1,23 @@
-import Vue from 'vue'
+import { createApp } from "vue";
 import App from './App.vue'
-import router from './router/'
 
+import router from '@/routerVue.vue'
 import Constant from './const/WordConstant.vue'
 
 // bootstrap 引入 https://yukihiew.com/npm%E5%BC%95%E5%85%A5bootstrap/
 //import "bootstrap/dist/css/bootstrap.min.css"
 
+const app = createApp(App);
 // 阻止啟動時產生的訊息
-Vue.config.productionTip = false
+app.config.productionTip = false
 
-// 全域變數使用 Vue 2.0
+// 全域變數使用 Vue 2.0 Vue.prototype.$Name = ${data}
 // https://ithelp.ithome.com.tw/articles/10278887
-Vue.prototype.$Constant = Constant
+// 全域變數使用 Vue 3.0 app.config.globalProperties.Name = ${data}
+// https://vuejs.org/api/application.html#app-config-globalproperties
+app.config.globalProperties.Constant = Constant
 
-Vue.component('todo-list', {
+app.component('todo-list', {
     template: `
         <div>
           <div class="todo-title">
@@ -34,7 +37,7 @@ Vue.component('todo-list', {
     }
 });
 
-Vue.directive('number-input', {
+app.directive('number-input', {
     bind: function (el) {
         if (el.tagName !== 'INPUT')
             return;
@@ -57,9 +60,7 @@ function numberOnly(el) {
     return haddle;
 }
 
-new Vue({
-    router: router,
-    render: h => h(App)
-}).$mount('#app')
+app.use(router);
+app.mount('#app')
 
 //import "bootstrap/dist/js/bootstrap.js"

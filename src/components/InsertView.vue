@@ -212,13 +212,13 @@ export default {
   data() {
     return {
       titles: [
-        { text: "merchandiseTitle", val: this.$Constant.merchandise },
-        { text: "dataSourceTitle", val: this.$Constant.dataSource },
-        { text: "costTitle", val: this.$Constant.cost },
-        { text: "quantityTitle", val: this.$Constant.quantity },
-        { text: "totalCostTitle", val: this.$Constant.totalCost },
-        { text: "salesTitle", val: this.$Constant.sales },
-        { text: "profitTitle", val: this.$Constant.profit },
+        { text: "merchandiseTitle", val: this.Constant.merchandise },
+        { text: "dataSourceTitle", val: this.Constant.dataSource },
+        { text: "costTitle", val: this.Constant.cost },
+        { text: "quantityTitle", val: this.Constant.quantity },
+        { text: "totalCostTitle", val: this.Constant.totalCost },
+        { text: "salesTitle", val: this.Constant.sales },
+        { text: "profitTitle", val: this.Constant.profit },
       ],
       items: filterData(this.$route.query.Item),
       originalItems: null,
