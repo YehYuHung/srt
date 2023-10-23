@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,11 @@
     <link rel="icon" href="<%= BASE_URL %>glove.jpeg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
-    <title>SRT system DEV</title>
+    <title>
+        <%= VUE_APP_TITLE %>(<%= NODE_ENV%>)
+    </title>
 </head>
+
 <body>
     <script>
         // 處理 gitHub Page 404 最佳解法
@@ -23,9 +27,11 @@
         })();
     </script>
     <noscript>
-        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
 </body>
+
 </html>

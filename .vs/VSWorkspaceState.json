@@ -3,11 +3,9 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\assets",
     "\\src\\components",
-    "\\src\\const",
-    "\\src\\router"
+    "\\src\\const"
   ],
-  "SelectedNode": "\\src\\components\\InsertView.vue",
+  "SelectedNode": "\\src\\const\\WordConstant.vue",
   "PreviewInSolutionExplorer": false
 }

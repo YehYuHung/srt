@@ -43,6 +43,21 @@
   </div>
 </template>
 
+<style scoped>
+h3 {
+  color: red;
+}
+
+div.float-right {
+  float: right;
+}
+
+div.float-right > button {
+  margin-right: 1vw;
+  margin-bottom: 1vh;
+}
+</style>
+
 <script>
 import merchandise from "@/mock/data/merchandise.json";
 import "ag-grid-community/styles/ag-grid.css";
@@ -158,19 +173,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-h3 {
-  color: red;
-}
-
-div.float-right {
-  float: right;
-}
-
-div.float-right > button {
-  margin-right: 1vw;
-  margin-bottom: 1vh;
-}
-</style>
-

@@ -9,29 +9,29 @@ const routerSrt = [
   {
     name: "index",
     path: "/srt/",
-    component: () => import("@/components/Index.vue"),
+    component: () => import("@/views/SRT/IndexView.vue"),
   },
   {
     name: "report",
     path: "/srt/Report/",
-    component: () => import("@/components/ReportView.vue"),
+    component: () => import("@/views/SRT/ReportView.vue"),
   },
   {
     name: "complexPart",
     path: "/srt/complexPart/",
-    component: () => import("@/components/complexPart.vue"),
+    component: () => import("@/views/SRT/complexPartView.vue"),
   },
   {
     name: "grid",
     path: "/srt/AsGrid/",
-    component: () => import("@/components/AsGridView.vue"),
+    component: () => import("@/views/SRT/AsGridView.vue"),
     //children: [{ path: '', name: 'user', component: UserHome }]
   },
   // keepAlive 快取存活
   {
     name: "insert",
     path: "/srt/Insert/",
-    component: () => import("@/components/InsertView.vue"),
+    component: () => import("@/views/SRT/InsertView.vue"),
   },
   // SPA 與 MPA 差別 以及history/hash原理
   // https://ithelp.ithome.com.tw/articles/10277447?sc=pt
@@ -41,7 +41,7 @@ const routerSrt = [
   {
     name: "passing",
     path: "/srt/Pass/:storeId(\\d+)?",
-    component: () => import("@/components/InsertView.vue"),
+    component: () => import("@/views/SRT/InsertView.vue"),
   },
   {},
 ];
