@@ -1,8 +1,5 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true,
+module.exports = {
   publicPath: "/srt/",
   // Compile Error
   // https://cli.vuejs.org/config/#runtimecompiler
-  runtimeCompiler: true,
-})
+}
