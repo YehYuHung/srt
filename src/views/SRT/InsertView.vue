@@ -151,6 +151,50 @@
   </div>
 </template>
 
+<style scoped>
+div.float-right {
+  float: right;
+}
+
+div.float-left {
+  float: left;
+}
+
+div {
+  margin: 5px 0px;
+}
+
+.custom-table-width {
+  overflow-x: auto;
+  border: 1px solid black;
+}
+
+#InsertTable thead tr th {
+  width: 190px;
+}
+
+#InsertTable {
+  min-width: 1440px;
+  width: 100%;
+}
+/*
+    @media (max-width: 767px) {
+
+        .custom-table-width {
+            overflow-x: auto;
+        }
+
+        #InsertTable thead tr th{
+            width: 190px;
+        }
+
+        #InsertTable {
+            min-width: 1440px;
+            width: 100%;
+        }
+    }*/
+</style>
+
 <script>
 import merchandise from "@/mock/data/merchandise.json";
 function filterData(query) {
@@ -275,47 +319,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-div.float-right {
-  float: right;
-}
-
-div.float-left {
-  float: left;
-}
-
-div {
-  margin: 5px 0px;
-}
-
-.custom-table-width {
-  overflow-x: auto;
-  border: 1px solid black;
-}
-
-#InsertTable thead tr th {
-  width: 190px;
-}
-
-#InsertTable {
-  min-width: 1440px;
-  width: 100%;
-}
-/*
-    @media (max-width: 767px) {
-
-        .custom-table-width {
-            overflow-x: auto;
-        }
-
-        #InsertTable thead tr th{
-            width: 190px;
-        }
-
-        #InsertTable {
-            min-width: 1440px;
-            width: 100%;
-        }
-    }*/
-</style>

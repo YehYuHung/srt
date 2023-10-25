@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from './App.vue'
 
 import router from '@/routerVue.vue'
-import Constant from './const/WordConstant.vue'
+import Constant from '@/const/WordConstant.vue'
 
 // bootstrap 引入 https://yukihiew.com/npm%E5%BC%95%E5%85%A5bootstrap/
 //import "bootstrap/dist/css/bootstrap.min.css"
@@ -62,5 +62,3 @@ function numberOnly(el) {
 
 app.use(router);
 app.mount('#app')
-
-//import "bootstrap/dist/js/bootstrap.js"

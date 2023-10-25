@@ -17,4 +17,6 @@ const callback = err => {
 /**
  * This task pushes to the `master` branch of the configured `repo`.
  */
+console.log(`===== START =====`)
 ghpages.publish(path.resolve(__dirname, '../dist'), options, callback)
+console.log(`===== END =====`)

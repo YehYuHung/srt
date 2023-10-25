@@ -1,0 +1,20 @@
+{
+    "todos": [
+        {
+            "title": "Get dressed",
+            "isComplete": false
+        },
+        {
+            "title": "Buy food",
+            "isComplete": false
+        },
+        {
+            "title": "Eat lunch",
+            "isComplete": true
+        },
+        {
+            "title": "Write Article",
+            "isComplete": true
+        }
+    ]
+}

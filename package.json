@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 7799",
     "build": "vue-cli-service build",
+    "build-development": "vue-cli-service build --mode development",
     "lint": "vue-cli-service lint",
-    "deploy": "npm run build && node ./deploy/ghpages.js"
+    "deploy": "npm run build && node ./deploy/ghpages.js",
+    "deploy-development": "npm run build-development && node ./deploy/ghpages.js"
   },
   "dependencies": {
     "ag-grid-community": "^28.2.1",

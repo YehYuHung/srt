@@ -6,8 +6,14 @@
   </div>
 </template>
 
+<style scoped>
+</style>
+
 <script>
 export default {
   name: "IndexView",
+  data() {
+    return {};
+  },
 };
 </script>

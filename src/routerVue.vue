@@ -17,6 +17,11 @@ const router = createRouter({
   routes: srtRouter,
 });
 
+router.beforeEach((to, from) => {
+  console.log("To   :", to);
+  console.log("From :", from);
+});
+
 // 匯出 vue-router 設置
 export default router;
 </script>

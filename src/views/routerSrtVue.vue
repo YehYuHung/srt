@@ -43,7 +43,11 @@ const routerSrt = [
     path: "/srt/Pass/:storeId(\\d+)?",
     component: () => import("@/views/SRT/InsertView.vue"),
   },
-  {},
+  {
+    name: "ajax",
+    path: "/srt/ajax/",
+    component: () => import("@/views/SRT/AjaxPostView.vue"),
+  },
 ];
 
 export default routerSrt;
